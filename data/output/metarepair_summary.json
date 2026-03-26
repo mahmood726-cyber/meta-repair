@@ -2,21 +2,21 @@
   "n_reviews": 307,
   "grades": {
     "C": 79,
-    "B": 88,
-    "D": 82,
-    "A": 58
+    "B": 78,
+    "D": 100,
+    "A": 50
   },
   "n_multimodal": 183,
-  "n_outliers": 37,
+  "n_outliers": 86,
   "n_biased": 153,
   "n_unstable": 23,
-  "mean_correction_pct": 50.7,
+  "mean_correction_pct": 54.1,
   "avg_uncertainty": {
-    "pct_sampling": 36.5,
-    "pct_heterogeneity": 42.0,
+    "pct_sampling": 36.4,
+    "pct_heterogeneity": 41.4,
     "pct_model": 1.1,
-    "pct_bias": 19.4,
-    "pct_outlier": 1.0
+    "pct_bias": 19.2,
+    "pct_outlier": 1.8
   },
-  "elapsed_seconds": 37.2
+  "elapsed_seconds": 30.7
 }

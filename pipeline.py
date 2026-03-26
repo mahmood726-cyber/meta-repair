@@ -102,20 +102,14 @@ def diagnose_outliers(yi, sei):
     if k < 4:
         return {'n_outliers': 0, 'outlier_indices': [], 'outlier_studies': []}
 
-    # DL pooling
+    # FE pooling (not DL — DL inflates tau2 to accommodate outliers, masking them)
     wi = 1.0 / sei**2
     sw = np.sum(wi)
-    theta_fe = np.sum(wi * yi) / sw
-    Q = float(np.sum(wi * (yi - theta_fe)**2))
-    C = float(sw - np.sum(wi**2) / sw)
-    tau2 = max(0, (Q - (k-1)) / C) if C > 0 else 0
-    ws = 1.0 / (sei**2 + tau2)
-    sws = np.sum(ws)
-    theta = float(np.sum(ws * yi) / sws)
+    theta_fe = float(np.sum(wi * yi) / sw)
 
-    # Studentized residuals
-    residuals = (yi - theta) / np.sqrt(sei**2 + tau2)
-    outlier_mask = np.abs(residuals) > 2.5
+    # Studentized residuals from FE model
+    residuals = (yi - theta_fe) / sei
+    outlier_mask = np.abs(residuals) > 3.0
     outlier_idx = np.where(outlier_mask)[0].tolist()
 
     return {
@@ -137,14 +131,16 @@ def diagnose_publication_bias(yi, sei):
     y = yi / sei
     xm, ym = np.mean(x), np.mean(y)
     ssxx = np.sum((x - xm)**2)
+    if ssxx < 1e-15:
+        return {'egger_p': 1.0, 'egger_intercept': 0, 'tf_k0': 0, 'bias_detected': False}
     ssxy = np.sum((x - xm) * (y - ym))
     b = ssxy / ssxx
     a0 = ym - b * xm
     resid = y - a0 - b * x
-    mse = np.sum(resid**2) / (n - 2)
+    mse = np.sum(resid**2) / max(n - 2, 1)
     se_a = np.sqrt(mse * (1/n + xm**2/ssxx))
-    t = a0 / se_a
-    egger_p = 2 * (1 - sp_stats.t.cdf(abs(t), n - 2))
+    t = a0 / se_a if se_a > 0 else 0
+    egger_p = 2 * (1 - sp_stats.t.cdf(abs(t), max(n - 2, 1)))
 
     # Trim-and-fill (L0 estimator)
     wi = 1.0 / sei**2
