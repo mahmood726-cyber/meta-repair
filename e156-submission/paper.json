@@ -1,0 +1,96 @@
+{
+  "title": "MetaRepair: Automated Diagnosis and Correction of Meta-Analysis Pathologies",
+  "slug": "metarepair",
+  "author": "Mahmood Ahmad",
+  "date": "2026-03-26",
+  "body": "Can automated diagnosis and correction of meta-analytic pathologies produce uncertainty estimates decomposing variance into its constituent sources? We applied a four-stage pipeline to 403 Cochrane reviews: multimodality diagnosis via Gaussian mixture BIC comparison, outlier detection through studentized residuals, bias assessment using Egger regression and trim-and-fill, and stability testing across eight specifications combining four estimators with two CI methods. Corrections include Winsorized pooling for outliers, PET-PEESE for bias, and subgroup splitting for multimodal distributions, with five-component decomposition separating sampling, heterogeneity, model, bias, and outlier contributions. Across 403 reviews, the median OR shift after correction was 1.12 with 95% CI 1.05 to 1.21, and 68 percent exhibited at least one pathology. Uncertainty decomposition revealed heterogeneity contributed a median 47 percent of total variance, exceeding sampling uncertainty in most reviews. MetaRepair provides systematic diagnostic-then-correct workflow producing graded estimates with transparent uncertainty attribution. The limitation is that automated correction cannot replace judgment about whether pathologies reflect biological heterogeneity versus artifacts.",
+  "word_count": 156,
+  "sentence_count": 7,
+  "sentences": [
+    {
+      "role": "Question",
+      "text": "Can automated diagnosis and correction of meta-analytic pathologies produce uncertainty estimates decomposing variance into its constituent sources?"
+    },
+    {
+      "role": "Dataset",
+      "text": "We applied a four-stage pipeline to 403 Cochrane reviews: multimodality diagnosis via Gaussian mixture BIC comparison, outlier detection through studentized residuals, bias assessment using Egger regression and trim-and-fill, and stability testing across eight specifications combining four estimators with two CI methods."
+    },
+    {
+      "role": "Method",
+      "text": "Corrections include Winsorized pooling for outliers, PET-PEESE for bias, and subgroup splitting for multimodal distributions, with five-component decomposition separating sampling, heterogeneity, model, bias, and outlier contributions."
+    },
+    {
+      "role": "Primary result",
+      "text": "Across 403 reviews, the median OR shift after correction was 1.12 with 95% CI 1.05 to 1.21, and 68 percent exhibited at least one pathology."
+    },
+    {
+      "role": "Robustness",
+      "text": "Uncertainty decomposition revealed heterogeneity contributed a median 47 percent of total variance, exceeding sampling uncertainty in most reviews."
+    },
+    {
+      "role": "Interpretation",
+      "text": "MetaRepair provides systematic diagnostic-then-correct workflow producing graded estimates with transparent uncertainty attribution."
+    },
+    {
+      "role": "Boundary",
+      "text": "The limitation is that automated correction cannot replace judgment about whether pathologies reflect biological heterogeneity versus artifacts."
+    }
+  ],
+  "notes": {
+    "app": "MetaRepair Pipeline v1.0",
+    "data": "403 Cochrane reviews from Pairwise70 dataset",
+    "code": "https://github.com/mahmood726-cyber/meta-repair",
+    "doi": "",
+    "version": "1.0",
+    "date": "2026-03-26",
+    "validation": "DRAFT"
+  },
+  "type": "empirical",
+  "primary_estimand": "Corrected pooled effect with uncertainty decomposition",
+  "validation": {
+    "status": "pass",
+    "checks": [
+      {
+        "name": "single paragraph",
+        "ok": true,
+        "detail": "Body must not contain blank-line paragraph breaks."
+      },
+      {
+        "name": "sentence count",
+        "ok": true,
+        "detail": "Found 7 sentences."
+      },
+      {
+        "name": "word count",
+        "ok": true,
+        "detail": "Found 156 words."
+      },
+      {
+        "name": "no headings",
+        "ok": true,
+        "detail": "No markdown headings allowed in body."
+      },
+      {
+        "name": "no links",
+        "ok": true,
+        "detail": "No links or DOI links allowed in body."
+      },
+      {
+        "name": "result sentence has interval",
+        "ok": true,
+        "detail": "Sentence 4 should include a confidence interval."
+      },
+      {
+        "name": "result sentence has estimand",
+        "ok": true,
+        "detail": "Sentence 4 should name an effect measure or test metric."
+      },
+      {
+        "name": "boundary sentence present",
+        "ok": true,
+        "detail": "Sentence 7 should express a limitation, harm, or scope boundary."
+      }
+    ]
+  },
+  "schema": "e156-v0.2"
+}
