@@ -1,6 +1,6 @@
 Mahmood Ahmad
 Tahir Heart Institute
-author@example.com
+mahmood.ahmad2@nhs.net
 
 MetaRepair: Automated Diagnosis and Correction of Meta-Analysis Pathologies
 
