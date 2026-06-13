@@ -40,6 +40,7 @@ def diagnose_multimodality(yi, sei):
     # Fit k=1 (single Gaussian)
     mu1 = float(np.sum(wi_norm * yi))
     var1 = float(np.sum(wi_norm * (yi - mu1)**2))
+    var1 = max(var1, 1e-12)  # floor: identical yi gives var1==0 -> log(0)/0-div in ll1
     ll1 = float(np.sum(-0.5 * np.log(2*np.pi*var1) - 0.5 * (yi - mu1)**2 / var1))
     bic1 = -2 * ll1 + 2 * np.log(k)  # 2 params: mu, sigma
 
